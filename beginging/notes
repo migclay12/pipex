@@ -1,0 +1,11 @@
+	
+	//con access se usa para buscar si una direccion es correcta
+	//entonces en env tengo que buscar el PATH y en el path hacer
+	//un split por los ":" y pillar la direccion y luego hacer un
+	//join con el comando mandado para ver si existe, si existte
+	//se lo mando al execcve y sino sigo probando con los siguientes
+	//y si no existe mando fallo
+
+	//el fork se usa para crear dos ramas y uso la rama 0 pq la otra no se
+	//que número aleatorio tengo y uso esa rama, pq si se ejecuta 
+	//execve finaliza el programa asiq ir creando forks

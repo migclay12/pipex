@@ -6,7 +6,7 @@
 /*   By: miggonza <miggonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:32:46 by miggonza          #+#    #+#             */
-/*   Updated: 2023/09/22 13:13:12 by miggonza         ###   ########.fr       */
+/*   Updated: 2023/09/26 14:01:48 by miggonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,36 @@ void	ft_print_error(char *str)
 	exit(1);
 }
 
+void	wtf(char **argv, char **env)
+{
+	int	fd[2];
+
+	if (pipe(fd) < 0)
+		ft_print_error("ERRRRROR");
+	pipe(fd);
+	ft_read_file(argv, env, fd);
+	ft_write_file(argv, env, fd);
+	close(fd[0]);
+	close(fd[1]);
+}
+//int	status;
+//waitpid(-1, &status, 0);
+//waitpid(-1, &status, 0);
+
 int	main(int argc, char **argv, char **env)
 {
-	
-	if (argc > 6)
-		ft_print_error("Error main");
-	
-	//int i = 0;
-	//i = ft_find_path(env);
-
-	//char *rec;
-	//rec = ft_join_path(argv[2], env);
-
-	
+	ft_find_path(env);
+	if (argc != 5 && argv)
+		ft_print_error("ERROR NOT ENOUGH COMMANDS\n");
+	wtf(argv, env);
+	return (0);
+}
+	/*
+	if (argc < 5)
+	{
+		ft_printf("ERROR4\n");
+		return (0);
+	}
 
 	pid_t hola = fork();
 	int file;
@@ -49,27 +66,7 @@ int	main(int argc, char **argv, char **env)
 		//execve("/bin/cat", cmd, env);
 		//execve(rec, cmd, env);
 	}
-
-	pid_t h = fork();
-	int f;
-	if (h == 0)
-	{
-		f = open(argv[1], O_RDONLY);
-		dup2(f, 0);
-		close(f);
-		ft_split_cmd(argv[3], env);
-	}
-
-	return (0);
-}
-	/*
-	if (argc < 5)
-	{
-		ft_printf("ERROR4\n");
-		return (0);
-	}
 	*/
-
 
 	/*
 	pid_t hola = fork();

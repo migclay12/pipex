@@ -1,5 +1,5 @@
 NAME = pipex
-SRC = main.c path.c
+SRC = main.c path.c stuff.c
 
 OBJ = $(SRC:.c=.o)
 #-fsanitize=address
@@ -16,8 +16,8 @@ ${NAME}: ${OBJ}
 $(OBJ): $(SRC)
 		@gcc $(FLAGS) -c $(SRC)
 
-exe: all
-		@./$(NAME) file1 "cat" "ls" file2
+#exe: all
+#		@./$(NAME) file1 "ls" "grep file" file2
 
 clean:
 		@rm -rf $(OBJ)

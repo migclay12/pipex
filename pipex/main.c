@@ -6,7 +6,7 @@
 /*   By: miggonza <miggonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:32:46 by miggonza          #+#    #+#             */
-/*   Updated: 2023/09/26 14:01:48 by miggonza         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:21:03 by miggonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,29 @@
 // < file1 cmd1 | cmd2 > file2
 void	ft_print_error(char *str)
 {
-	ft_printf("%s\n", str);
+	ft_putstr_fd(str, 2);
 	exit(1);
+}
+
+void	ft_perror(char *str)
+{
+	perror(str);
+	exit(0);
 }
 
 void	wtf(char **argv, char **env)
 {
 	int	fd[2];
-
+	int	status;
+	
 	if (pipe(fd) < 0)
 		ft_print_error("ERRRRROR");
-	pipe(fd);
 	ft_read_file(argv, env, fd);
 	ft_write_file(argv, env, fd);
 	close(fd[0]);
 	close(fd[1]);
+	waitpid(-1, &status, 0);
+	waitpid(-1, &status, 0);
 }
 //int	status;
 //waitpid(-1, &status, 0);
@@ -42,7 +50,7 @@ void	wtf(char **argv, char **env)
 int	main(int argc, char **argv, char **env)
 {
 	ft_find_path(env);
-	if (argc != 5 && argv)
+	if (argc != 5)
 		ft_print_error("ERROR NOT ENOUGH COMMANDS\n");
 	wtf(argv, env);
 	return (0);

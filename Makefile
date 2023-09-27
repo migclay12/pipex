@@ -1,11 +1,11 @@
 NAME = pipex
-SRC = main.c path.c stuff.c
+SRC = anything/main.c anything/path.c anything/stuff.c
 
 OBJ = $(SRC:.c=.o)
 #-fsanitize=address
 FLAGS = -Wall -Wextra -Werror
 
-LIB = ../libft
+LIB = libft
 
 all: ${NAME}
 
@@ -13,8 +13,8 @@ ${NAME}: ${OBJ}
 		make -C $(LIB)
 		@gcc $(FLAGS) $(OBJ) -o $(NAME) $(LIB)/libft.a
 
-$(OBJ): $(SRC)
-		@gcc $(FLAGS) -c $(SRC)
+#$(OBJ): $(SRC)
+#		@gcc $(FLAGS) -c $(SRC)
 
 #exe: all
 #		@./$(NAME) file1 "ls" "grep file" file2

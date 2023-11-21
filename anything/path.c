@@ -12,18 +12,6 @@
 
 #include "pipex.h"
 
-void	ft_free_matrix(char **matrix)
-{
-	int	i;
-
-	i = -1;
-	while (matrix[++i])
-		;
-	while (--i >= 0)
-		free(matrix[i]);
-	free(matrix);
-}
-
 int	ft_find_path(char **env)
 {
 	int	i;
@@ -68,15 +56,10 @@ char	*ft_join_path(char *cmd, char **env)
 		join2 = ft_strjoin(join, cmd);
 		free(join);
 		if (access(join2, X_OK) == 0)
-		{
-			//ft_free_matrix(save);
-			printf("%s\n", join2);
 			return (join2);
-		}
 		free(join2);
 		i++;
 	}
-	//ft_free_matrix(save);
 	ft_print_error("Error command not found");
 	return (0);
 }

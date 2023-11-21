@@ -6,7 +6,7 @@
 /*   By: miggonza <miggonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 10:37:32 by miggonza          #+#    #+#             */
-/*   Updated: 2023/09/27 13:17:08 by miggonza         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:06:46 by miggonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,3 @@ void	ft_write_file(char **argv, char **env, int *fd)
 		ft_split_cmd(argv[3], env);
 	}
 }
-
-//if (f < 0)
-	//	ft_perror("fork ");
-//if (file < 0)
-	//	ft_perror(argv[1]);
-//if (file < 0)
-		//	ft_perror(argv[4]);

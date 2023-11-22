@@ -34,7 +34,7 @@ void	ft_split_cmd(char *argv, char **env)
 
 	cmd = ft_split(argv, ' ');
 	if (!cmd || !cmd[0])
-		ft_print_error("command not found\n");
+		ft_print_error("command not found");
 	send = ft_join_path(cmd[0], env);
 	if (execve(send, cmd, env) == -1)
 		ft_print_error("Error command not executable?");

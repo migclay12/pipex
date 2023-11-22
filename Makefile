@@ -16,8 +16,12 @@ ${NAME}: ${OBJ}
 #$(OBJ): $(SRC)
 #		@gcc $(FLAGS) -c $(SRC)
 
-#exe: all
-#		@./$(NAME) file1 "ls" "grep file" file2
+exe: all
+		@./$(NAME) file1 "ls" "wc -l" "cat -e" "cat -e" "cat -e" file2
+#< file1 ls | wc -l | cat -e > file3
+#cmd << LIMITER | cmd1 >> file
+exe2:
+		cmp file2 file3
 
 clean:
 		@rm -rf $(OBJ)

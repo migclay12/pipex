@@ -1,5 +1,6 @@
 NAME = pipex
-SRC = anything/main.c anything/path.c anything/stuff.c
+
+SRC = source/main.c source/pipex.c source/path.c source/child.c
 
 OBJ = $(SRC:.c=.o)
 #-fsanitize=address
@@ -17,10 +18,15 @@ ${NAME}: ${OBJ}
 #		@gcc $(FLAGS) -c $(SRC)
 
 exe: all
-		@./$(NAME) file1 "ls" "wc -l" "cat -e" "cat -e" "cat -e" file2
-#< file1 ls | wc -l | cat -e > file3
+		@./$(NAME) file1 "ls" "cat -e" file2
+		< file1 ls | cat -e > file3
+		cmp file2 file3
+
 #cmd << LIMITER | cmd1 >> file
-exe2:
+
+exe2: all
+		@./$(NAME) file1 "ls" "wc -l" "cat -e" "cat -e" "cat -e" file2
+		< file1 ls | wc -l | cat -e | cat -e | cat -e > file3
 		cmp file2 file3
 
 clean:

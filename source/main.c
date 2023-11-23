@@ -6,7 +6,7 @@
 /*   By: miggonza <miggonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:32:46 by miggonza          #+#    #+#             */
-/*   Updated: 2023/11/22 19:28:21 by miggonza         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:04:48 by miggonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,57 +27,15 @@ void	ft_perror(char *str)
 	exit(1);
 }
 
-void	wtf(char **argv, char **env)
-{
-	int	fd[2];
-	int	status;
-
-	if (pipe(fd) < 0)
-		ft_print_error("ERRRRROR");
-	ft_read_file(argv, env, fd);
-	ft_write_file(argv, env, fd);
-	close(fd[0]);
-	close(fd[1]);
-	waitpid(-1, &status, 0);
-	waitpid(-1, &status, 0);
-}
-
-void	wtf_bonus(int argc, char **argv, char **env)
-{
-	int	fd[2];
-	int	status;
-	int	num_cmd;
-	int	i;
-
-	num_cmd = argc - 3;
-	if (pipe(fd) < 0)
-		ft_print_error("ERRRRROR");
-	i = 3;
-	ft_read_file(argv, env, fd);
-	while (i < argc - 2)
-	{
-		ft_child_middle(argv[i], env, fd);
-		i++;
-	}
-	ft_write_file_bonus(argv, env, fd, argc - 2);
-	close(fd[0]);
-	close(fd[1]);
-	while (num_cmd >= 0)
-	{
-		waitpid(-1, &status, 0);
-		num_cmd--;
-	}
-}
-
 int	main(int argc, char **argv, char **env)
 {
 	ft_find_path(env);
 	if (argc < 5)
-		ft_print_error("ERROR NOT ENOUGH COMMANDS\n");
+		ft_print_error("Error, less than 5 commands");
 	if (argc == 5)
-		wtf(argv, env);
+		ft_pipex(argc, argv, env);
 	if (argc > 5)
-		wtf_bonus(argc, argv, env);
+		ft_pipex_bonus(argc, argv, env);
 	return (0);
 }
 

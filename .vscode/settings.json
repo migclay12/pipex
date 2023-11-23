@@ -3,6 +3,7 @@
         "unistd.h": "c",
         "pipex.h": "c",
         "wait.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "stdio.h": "c"
     }
 }

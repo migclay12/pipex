@@ -34,11 +34,12 @@ void	ft_execve(char *argv, char **env)
 
 	cmd = ft_split(argv, ' ');
 	if (!cmd || !cmd[0])
-		ft_print_error("Error command not found");
+		ft_print_error("command not found");
 	send = ft_join_path(cmd[0], env);
 	if (execve(send, cmd, env) == -1)
-		ft_perror("");
-		//ft_print_error("Error command not executable");
+	{
+		ft_print_error(cmd[0]);
+	}
 }
 
 char	*ft_join_path(char *cmd, char **env)
@@ -48,6 +49,9 @@ char	*ft_join_path(char *cmd, char **env)
 	char	*join;
 	char	*join2;
 
+	if ((!ft_strncmp(cmd, "/", 1)) || (!ft_strncmp(cmd, "./", 2))
+		|| (!ft_strncmp(cmd, "../", 3)))
+		return (cmd);
 	i = ft_find_path(env);
 	save = ft_split(env[i] + 5, ':');
 	i = 0;
@@ -61,6 +65,6 @@ char	*ft_join_path(char *cmd, char **env)
 		free(join2);
 		i++;
 	}
-	ft_print_error("Error command not found");
+	ft_print_error(cmd);
 	return (0);
 }

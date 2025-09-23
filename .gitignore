@@ -1,0 +1,52 @@
+# Executables
+pipex
+*.out
+
+# Object files
+*.o
+source/*.o
+
+# Test files
+test_*
+*_test
+*_bonus
+
+# Input/Output test files
+file1
+file2
+file3
+input.txt
+output.txt
+result.txt
+count.txt
+fruits.txt
+access.log
+uppercase.txt
+here_doc
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.code-workspace
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Log files
+*.log
+
+# Backup files
+*.bak
+*.backup
